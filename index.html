@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>Mario Rossi — Software Developer | Portfolio</title>
+    <meta name="description"
+        content="Portfolio personale di Mario Rossi, Software Developer. Curriculum, competenze, progetti e contatti in un'interfaccia terminale moderna." />
+    <meta name="keywords" content="portfolio, developer, software, curriculum, terminale" />
+    <meta name="author" content="Mario Rossi" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mario Rossi — Software Developer" />
+    <meta property="og:description" content="Portfolio e curriculum di Mario Rossi, Software Developer." />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon (terminal emoji) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Marked.js — rendering Markdown lato client -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+
+    <!-- Main script (defer per caricare dopo il DOM) -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ========== TOP BAR ========== -->
+    <header class="topbar" role="banner">
+        <div class="topbar__title">
+            <span>⟩</span> pietro.oss<span class="topbar__sep">@</span>portfolio
+        </div>
+        <div class="topbar__actions">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambia tema">🌙 dark</button>
+        </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main" role="main">
+
+        <!-- ────────────────────────────────────
+         HOME — Terminal simulato
+         ──────────────────────────────────── -->
+        <section id="view-home" class="terminal view-panel active">
+            <div class="terminal__bar">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+                <span class="terminal__tab">~/portfolio — bash</span>
+            </div>
+
+            <div class="terminal__body">
+                <!-- Prompt -->
+                <div class="prompt">
+                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                        class="prompt__path">~</span><span class="prompt__symbol">$</span>
+                    <span class="typing">
+                        <span class="typing-text" id="typing-target" data-text="cat about.txt"
+                            style="visibility:hidden;">cat about.txt</span>
+                    </span>
+                    <span class="cursor"></span>
+                </div>
+
+                <!-- Output (info personali) -->
+                <div class="output">
+                    <div class="output__line">
+                        <span class="output__name">Pietro Oss</span>
+                    </div>
+                    <div class="output__line">
+                        <span class="output__role">Software Specialist</span>
+                    </div>
+                    <div class="output__line">
+                        <span class="output__desc">Software Specialist con esperienza in sviluppo software e
+                            integrazioni ERP. Appassionato di automazione, gestione dati e soluzioni innovative.</span>
+                    </div>
+                </div>
+
+                <!-- Comandi interattivi -->
+                <div class="commands">
+                    <button class="cmd-btn" data-cmd="open cv" id="btn-cv">open cv</button>
+                    <button class="cmd-btn" data-cmd="download cv" id="btn-download">download cv</button>
+                    <button class="cmd-btn" data-cmd="contact" id="btn-contact">contact</button>
+                    <button class="cmd-btn" data-cmd="help" id="btn-help">help</button>
+                </div>
+
+                <!-- Input interattivo -->
+                <div class="input-area">
+                    <div class="input-line">
+                        <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                            class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                            class="prompt__path">~</span><span class="prompt__symbol">$</span>
+                        <input type="text" class="input-field" id="terminal-input" placeholder="type a command…"
+                            autocomplete="off" spellcheck="false" aria-label="Inserisci un comando" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ────────────────────────────────────
+         CV — Markdown renderizzato
+         ──────────────────────────────────── -->
+        <section id="view-cv" class="terminal view-panel">
+            <div class="terminal__bar">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+                <span class="terminal__tab">~/portfolio/cv.md — markdown</span>
+            </div>
+            <div class="terminal__body">
+                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+                <div class="cv-content" id="cv-render">
+                    <!-- Il contenuto del CV verrà iniettato qui da script.js -->
+                    <p style="color:var(--text-muted)">Caricamento cv.md…</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ────────────────────────────────────
+         DOWNLOAD
+         ──────────────────────────────────── -->
+        <section id="view-download" class="terminal view-panel">
+            <div class="terminal__bar">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+                <span class="terminal__tab">~/portfolio/downloads — bash</span>
+            </div>
+            <div class="terminal__body">
+                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+
+                <div class="prompt">
+                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                        class="prompt__path">~/downloads</span><span class="prompt__symbol">$</span>
+                    <span style="color:var(--text-primary)">ls -la cv.*</span>
+                </div>
+
+                <div class="download-grid">
+                    <!-- PDF -->
+                    <a class="download-card" href="#" onclick="downloadPDF(); return false;" id="dl-pdf">
+                        <div class="download-card__icon">📄</div>
+                        <div class="download-card__format">cv.pdf</div>
+                        <div class="download-card__hint">$ download pdf</div>
+                    </a>
+
+                    <!-- DOCX -->
+                    <a class="download-card" href="#" onclick="downloadDOCX(); return false;" id="dl-docx">
+                        <div class="download-card__icon">📝</div>
+                        <div class="download-card__format">cv.docx</div>
+                        <div class="download-card__hint">$ download docx</div>
+                    </a>
+
+                    <!-- Markdown -->
+                    <a class="download-card" href="#" onclick="downloadMD(); return false;" id="dl-md">
+                        <div class="download-card__icon">📋</div>
+                        <div class="download-card__format">cv.md</div>
+                        <div class="download-card__hint">$ download md</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ────────────────────────────────────
+         CONTATTI
+         ──────────────────────────────────── -->
+        <section id="view-contact" class="terminal view-panel">
+            <div class="terminal__bar">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+                <span class="terminal__tab">~/portfolio/contacts — bash</span>
+            </div>
+            <div class="terminal__body">
+                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+
+                <div class="prompt">
+                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                        class="prompt__path">~/contacts</span><span class="prompt__symbol">$</span>
+                    <span style="color:var(--text-primary)">cat contacts.json</span>
+                </div>
+
+                <ul class="contact-list">
+                    <li>
+                        <span class="label">"email":</span>
+                        <a href="mailto:mario.rossi@email.com">"mario.rossi@email.com"</a>
+                    </li>
+                    <li>
+                        <span class="label">"github":</span>
+                        <a href="https://github.com/pieoss23" target="_blank" rel="noopener">"github.com/pieoss23"</a>
+                    </li>
+                    <li>
+                        <span class="label">"linkedin":</span>
+                        <a href="https://linkedin.com/in/pietro-oss" target="_blank"
+                            rel="noopener">"linkedin.com/in/pietro-oss"</a>
+                    </li>
+                    <li>
+                        <span class="label">"website":</span>
+                        <a href="https://pieoss.dev" target="_blank" rel="noopener">"pieoss.dev"</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ────────────────────────────────────
+         HELP
+         ──────────────────────────────────── -->
+        <section id="view-help" class="terminal view-panel">
+            <div class="terminal__bar">
+                <span class="terminal__dot terminal__dot--red"></span>
+                <span class="terminal__dot terminal__dot--yellow"></span>
+                <span class="terminal__dot terminal__dot--green"></span>
+                <span class="terminal__tab">~/portfolio — help</span>
+            </div>
+            <div class="terminal__body">
+                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+
+                <div class="prompt">
+                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                        class="prompt__path">~</span><span class="prompt__symbol">$</span>
+                    <span style="color:var(--text-primary)">help</span>
+                </div>
+
+                <table class="help-table">
+                    <tr>
+                        <td class="help-cmd">open cv</td>
+                        <td class="help-desc">Visualizza il curriculum</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">download cv</td>
+                        <td class="help-desc">Scarica il CV (scegli formato)</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">download pdf</td>
+                        <td class="help-desc">Scarica il CV in formato PDF</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">download docx</td>
+                        <td class="help-desc">Scarica il CV in formato DOCX</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">download md</td>
+                        <td class="help-desc">Scarica il CV in formato Markdown</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">contact</td>
+                        <td class="help-desc">Mostra i contatti</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">help</td>
+                        <td class="help-desc">Mostra questo messaggio</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">home</td>
+                        <td class="help-desc">Torna alla schermata iniziale</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">clear</td>
+                        <td class="help-desc">Pulisci e torna alla home</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== STATUS BAR (footer) ========== -->
+    <footer class="statusbar" role="contentinfo">
+        <div class="statusbar__left">
+            <span>●</span> READY — <span id="status-view">HOME</span>
+        </div>
+        <div class="statusbar__right">
+            UTF-8 &nbsp;|&nbsp; JavaScript &nbsp;|&nbsp; LF
+        </div>
+    </footer>
+
+</body>
+
+</html>
