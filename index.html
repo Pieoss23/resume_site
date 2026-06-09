@@ -1,141 +1,332 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="dark">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO -->
-    <title>Pietro Oss — Software Developer | Portfolio</title>
+    <title>Pietro Oss - Software Specialist | Portfolio</title>
     <meta name="description"
-        content="Portfolio personale di Pietro Oss, Software specialist Curriculum, competenze, progetti e contatti in un'interfaccia terminale moderna." />
-    <meta name="keywords" content="portfolio, developer, software, curriculum, terminale" />
+        content="Portfolio of Pietro Oss, software specialist focused on automation, AI workflows, ERP integrations, and product engineering." />
+    <meta name="keywords" content="portfolio, software developer, AI, RAG, ERP, automation" />
     <meta name="author" content="Pietro Oss" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Pietro Oss — Software Developer" />
-    <meta property="og:description" content="Portfolio e curriculum di Pietro Oss, Software Developer." />
+    <meta property="og:title" content="Pietro Oss - Software Specialist" />
+    <meta property="og:description"
+        content="Projects, experience, and contact details for Pietro Oss, software specialist." />
     <meta property="og:type" content="website" />
-
-    <!-- Favicon (terminal emoji) -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
-
-    <!-- Styles -->
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='68' font-size='56' font-family='monospace'>&gt;_</text></svg>" />
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Marked.js — rendering Markdown lato client -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-
-    <!-- Main script (defer per caricare dopo il DOM) -->
     <script src="script.js" defer></script>
 </head>
 
 <body>
+    <div class="page-backdrop" aria-hidden="true">
+        <div class="page-backdrop__grid"></div>
+        <div class="page-backdrop__glow page-backdrop__glow--one" data-parallax data-parallax-speed="0.18"></div>
+        <div class="page-backdrop__glow page-backdrop__glow--two" data-parallax data-parallax-speed="-0.12"></div>
+    </div>
 
-    <!-- ========== TOP BAR ========== -->
     <header class="topbar" role="banner">
         <div class="topbar__title">
-            <span>⟩</span> pietro.oss<span class="topbar__sep">@</span>portfolio
+            <span>&lt;/&gt;</span> pietro.oss<span class="topbar__sep">@</span>portfolio
         </div>
+        <nav class="topbar__nav" aria-label="Primary">
+            <a href="#hero" data-i18n="nav.home">Home</a>
+            <a href="#projects" data-i18n="nav.projects">Projects</a>
+            <a href="#focus" data-i18n="nav.focus">Focus</a>
+            <a href="#contact-strip" data-i18n="nav.contact">Contact</a>
+        </nav>
         <div class="topbar__actions">
-            <button class="theme-toggle" id="theme-toggle" aria-label="Cambia tema">🌙 dark</button>
+            <div class="control-group" aria-label="Theme">
+                <span class="control-group__label" data-i18n="controls.theme">Theme</span>
+                <div class="segmented-control" id="theme-control">
+                    <button class="segmented-control__btn" id="theme-dark" type="button" data-theme-option="dark"
+                        data-i18n="controls.dark">Dark</button>
+                    <button class="segmented-control__btn" id="theme-light" type="button" data-theme-option="light"
+                        data-i18n="controls.light">Light</button>
+                </div>
+            </div>
+            <div class="control-group" aria-label="Language">
+                <span class="control-group__label" data-i18n="controls.language">Language</span>
+                <div class="segmented-control" id="lang-control">
+                    <button class="segmented-control__btn" type="button" data-lang="en">EN</button>
+                    <button class="segmented-control__btn" type="button" data-lang="it">IT</button>
+                    <button class="segmented-control__btn" type="button" data-lang="es">ES</button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- ========== MAIN CONTENT ========== -->
     <main class="main" role="main">
+        <section id="view-home" class="view-panel active home-view">
+            <section id="hero" class="hero">
+                <div class="hero__copy reveal">
+                    <p class="eyebrow" data-i18n="hero.eyebrow">Software Specialist | Automation | AI Workflows</p>
+                    <h1 data-i18n="hero.title">Building useful software with clean UX and applied AI.</h1>
+                    <p class="hero__lede" data-i18n="hero.lede">
+                        I design internal tools, integrations, and product demos that move from idea to working
+                        system quickly. My current focus is ERP workflows, retrieval systems, and interfaces that stay
+                        clear under real usage.
+                    </p>
 
-        <!-- ────────────────────────────────────
-         HOME — Terminal simulato
-         ──────────────────────────────────── -->
-        <section id="view-home" class="terminal view-panel active">
-            <div class="terminal__bar">
-                <span class="terminal__dot terminal__dot--red"></span>
-                <span class="terminal__dot terminal__dot--yellow"></span>
-                <span class="terminal__dot terminal__dot--green"></span>
-                <span class="terminal__tab">~/portfolio — bash</span>
-            </div>
-
-            <div class="terminal__body">
-                <!-- Prompt -->
-                <div class="prompt">
-                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
-                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
-                        class="prompt__path">~</span><span class="prompt__symbol">$</span>
-                    <span class="typing">
-                        <span class="typing-text" id="typing-target" data-text="cat about.txt"
-                            style="visibility:hidden;">cat about.txt</span>
-                    </span>
-                    <span class="cursor"></span>
-                </div>
-
-                <!-- Output (info personali) -->
-                <div class="output">
-                    <div class="output__line">
-                        <span class="output__name">Pietro Oss</span>
+                    <div class="hero__stats">
+                        <div class="stat-chip">
+                            <span class="stat-chip__value">AI</span>
+                            <span class="stat-chip__label" data-i18n="hero.stats.ai">RAG, search, summarization</span>
+                        </div>
+                        <div class="stat-chip">
+                            <span class="stat-chip__value">ERP</span>
+                            <span class="stat-chip__label" data-i18n="hero.stats.erp">Integrations and process automation</span>
+                        </div>
+                        <div class="stat-chip">
+                            <span class="stat-chip__value">UX</span>
+                            <span class="stat-chip__label" data-i18n="hero.stats.ux">Interfaces people can actually use</span>
+                        </div>
                     </div>
-                    <div class="output__line">
-                        <span class="output__role">Software Specialist</span>
-                    </div>
-                    <div class="output__line">
-                        <span class="output__desc">Software Specialist con esperienza in sviluppo software e
-                            integrazioni ERP. Appassionato di automazione, gestione dati e soluzioni innovative.</span>
+
+                    <div class="hero__actions">
+                        <button class="cmd-btn" data-cmd="open cv" data-i18n="commands.openCv">open cv</button>
+                        <button class="cmd-btn" data-cmd="download cv" data-i18n="commands.downloadCv">download cv</button>
+                        <button class="cmd-btn" data-cmd="contact" data-i18n="commands.contact">contact</button>
                     </div>
                 </div>
 
-                <!-- Comandi interattivi -->
-                <div class="commands">
-                    <button class="cmd-btn" data-cmd="open cv" id="btn-cv">open cv</button>
-                    <button class="cmd-btn" data-cmd="download cv" id="btn-download">download cv</button>
-                    <button class="cmd-btn" data-cmd="contact" id="btn-contact">contact</button>
-                    <button class="cmd-btn" data-cmd="help" id="btn-help">help</button>
+                <div class="hero__terminal-wrap reveal">
+                    <section class="terminal hero-terminal">
+                        <div class="terminal__bar">
+                            <span class="terminal__dot terminal__dot--red"></span>
+                            <span class="terminal__dot terminal__dot--yellow"></span>
+                            <span class="terminal__dot terminal__dot--green"></span>
+                            <span class="terminal__tab">~/portfolio - bash</span>
+                        </div>
+
+                        <div class="terminal__body">
+                            <div class="prompt">
+                                <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                                    class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                                    class="prompt__path">~</span><span class="prompt__symbol">$</span>
+                                <span class="typing">
+                                    <span class="typing-text" id="typing-target" data-text="cat featured_projects.json"
+                                        data-i18n-data-text="terminal.typing"
+                                        style="visibility:hidden;">cat featured_projects.json</span>
+                                </span>
+                                <span class="cursor"></span>
+                            </div>
+
+                            <div class="output">
+                                <div class="output__line">
+                                    <span class="output__name">Pietro Oss</span>
+                                </div>
+                                <div class="output__line">
+                                    <span class="output__role" data-i18n="terminal.role">Software Specialist</span>
+                                </div>
+                                <div class="output__line">
+                                    <span class="output__desc" data-i18n="terminal.desc">
+                                        I build applied software: AI assistants grounded on documents, data pipelines,
+                                        ERP-connected workflows, and frontend experiences with pragmatic engineering.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="terminal-highlights">
+                                <article class="mini-panel">
+                                    <span class="mini-panel__label" data-i18n="terminal.panel1.label">Current build</span>
+                                    <strong data-i18n="terminal.panel1.title">University PDF RAG tutor</strong>
+                                    <p data-i18n="terminal.panel1.desc">Chunked lecture material, semantic retrieval, answer grounding.</p>
+                                </article>
+                                <article class="mini-panel">
+                                    <span class="mini-panel__label" data-i18n="terminal.panel2.label">Interface demo</span>
+                                    <strong data-i18n="terminal.panel2.title">Podcast explorer</strong>
+                                    <p data-i18n="terminal.panel2.desc">Browse global shows, filter by topic, play episodes from one place.</p>
+                                </article>
+                            </div>
+
+                            <div class="input-area">
+                                <div class="input-line">
+                                    <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
+                                        class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
+                                        class="prompt__path">~</span><span class="prompt__symbol">$</span>
+                                    <input type="text" class="input-field" id="terminal-input"
+                                        placeholder="type a command..." data-i18n-placeholder="terminal.placeholder"
+                                        autocomplete="off" spellcheck="false" aria-label="Enter a command" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section id="projects" class="content-section reveal">
+                <div class="section-heading">
+                    <p class="eyebrow" data-i18n="projects.eyebrow">Featured work</p>
+                    <h2 data-i18n="projects.title">Project demos worth showing, not just listing.</h2>
+                    <p data-i18n="projects.lede">
+                        I added a stronger project layer to the portfolio so visitors can understand what was built,
+                        how it works, and what kind of product thinking sits behind the implementation.
+                    </p>
                 </div>
 
-                <!-- Input interattivo -->
-                <div class="input-area">
-                    <div class="input-line">
-                        <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
-                            class="prompt__user">portfolio</span><span class="prompt__sep">:</span><span
-                            class="prompt__path">~</span><span class="prompt__symbol">$</span>
-                        <input type="text" class="input-field" id="terminal-input" placeholder="type a command…"
-                            autocomplete="off" spellcheck="false" aria-label="Inserisci un comando" />
-                    </div>
+                <div class="project-grid">
+                    <article class="project-card reveal">
+                        <div class="project-card__header">
+                            <span class="project-card__tag">AI / RAG</span>
+                            <span class="project-card__status" data-i18n="projects.rag.status">Demo concept</span>
+                        </div>
+                        <h3 data-i18n="projects.rag.title">University PDF RAG Tutor</h3>
+                        <p data-i18n="projects.rag.body">
+                            A simple retrieval-augmented assistant that learns from university PDFs and answers with
+                            grounded references instead of generic text.
+                        </p>
+                        <ul class="project-card__list">
+                            <li data-i18n="projects.rag.item1">PDF ingestion, chunking, embeddings, and semantic search</li>
+                            <li data-i18n="projects.rag.item2">Answer flow that cites the retrieved lecture material</li>
+                            <li data-i18n="projects.rag.item3">Useful for exam prep, topic recap, and quick concept lookup</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span data-i18n="projects.rag.stack">Stack idea: Python, vector DB, OpenAI API, lightweight UI</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-card__header">
+                            <span class="project-card__tag">Media / UX</span>
+                            <span class="project-card__status" data-i18n="projects.podcast.status">Demo concept</span>
+                        </div>
+                        <h3 data-i18n="projects.podcast.title">World Podcast Explorer</h3>
+                        <p data-i18n="projects.podcast.body">
+                            A podcast site that lets people move through categories, regions, and languages, then
+                            listen directly without getting lost in cluttered discovery flows.
+                        </p>
+                        <ul class="project-card__list">
+                            <li data-i18n="projects.podcast.item1">Browse by topic, country, or publisher</li>
+                            <li data-i18n="projects.podcast.item2">Episode cards with player state and saved queue</li>
+                            <li data-i18n="projects.podcast.item3">Discovery-first layout tuned for large content catalogs</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span data-i18n="projects.podcast.stack">Stack idea: Next.js, search API, audio player, personalized feed</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-card__header">
+                            <span class="project-card__tag">Automation</span>
+                            <span class="project-card__status" data-i18n="projects.erp.status">Production mindset</span>
+                        </div>
+                        <h3 data-i18n="projects.erp.title">ERP Workflow Console</h3>
+                        <p data-i18n="projects.erp.body">
+                            A management interface for integrations, scheduled jobs, and exception handling across ERP
+                            processes where visibility matters more than decoration.
+                        </p>
+                        <ul class="project-card__list">
+                            <li data-i18n="projects.erp.item1">Job health, alerts, retries, and payload traceability</li>
+                            <li data-i18n="projects.erp.item2">Operator-friendly logs with fast filtering</li>
+                            <li data-i18n="projects.erp.item3">Designed for real internal usage under pressure</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span data-i18n="projects.erp.stack">Stack idea: API integrations, queues, dashboard UI, SQL</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-card__header">
+                            <span class="project-card__tag">Data / AI</span>
+                            <span class="project-card__status" data-i18n="projects.docs.status">Demo concept</span>
+                        </div>
+                        <h3 data-i18n="projects.docs.title">Document Operations Assistant</h3>
+                        <p data-i18n="projects.docs.body">
+                            A workflow tool that extracts structured information from business documents and routes it
+                            into downstream systems with a human review step where confidence is low.
+                        </p>
+                        <ul class="project-card__list">
+                            <li data-i18n="projects.docs.item1">OCR and parsing for invoices, forms, or internal files</li>
+                            <li data-i18n="projects.docs.item2">Validation rules before data lands in the target system</li>
+                            <li data-i18n="projects.docs.item3">Human-in-the-loop review for the risky edge cases</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span data-i18n="projects.docs.stack">Stack idea: OCR pipeline, rules engine, review UI, ERP handoff</span>
+                        </div>
+                    </article>
                 </div>
-            </div>
+            </section>
+
+            <section id="focus" class="content-section content-section--split reveal">
+                <div class="section-heading">
+                    <p class="eyebrow" data-i18n="focus.eyebrow">How I work</p>
+                    <h2 data-i18n="focus.title">Pragmatic product thinking with enough technical depth.</h2>
+                    <p data-i18n="focus.lede">
+                        I tend to work best where backend logic, process design, and frontend clarity need to meet in
+                        one coherent system.
+                    </p>
+                </div>
+
+                <div class="focus-grid">
+                    <article class="focus-card reveal">
+                        <span class="focus-card__index">01</span>
+                        <h3 data-i18n="focus.card1.title">Applied AI</h3>
+                        <p data-i18n="focus.card1.body">RAG workflows, document pipelines, prompt design, and tooling around real source data.</p>
+                    </article>
+                    <article class="focus-card reveal">
+                        <span class="focus-card__index">02</span>
+                        <h3 data-i18n="focus.card2.title">Process Automation</h3>
+                        <p data-i18n="focus.card2.body">Reducing manual steps, increasing traceability, and keeping operators in control.</p>
+                    </article>
+                    <article class="focus-card reveal">
+                        <span class="focus-card__index">03</span>
+                        <h3 data-i18n="focus.card3.title">Usable Interfaces</h3>
+                        <p data-i18n="focus.card3.body">Dense, readable layouts with motion that supports hierarchy instead of fighting it.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="contact-strip" class="contact-strip reveal">
+                <div>
+                    <p class="eyebrow" data-i18n="cta.eyebrow">Open to collaboration</p>
+                    <h2 data-i18n="cta.title">Need a software demo, internal tool, or AI-assisted workflow?</h2>
+                </div>
+                <div class="contact-strip__actions">
+                    <button class="cmd-btn" data-cmd="contact" data-i18n="commands.contact">contact</button>
+                    <button class="cmd-btn" data-cmd="help" data-i18n="commands.help">help</button>
+                </div>
+            </section>
+
+            <section class="support-banner reveal">
+                <div class="support-banner__copy">
+                    <p class="eyebrow" data-i18n="support.eyebrow">Support the work</p>
+                    <h2 data-i18n="support.title">If this portfolio made you smile, buy me a beer.</h2>
+                    <p data-i18n="support.body">
+                        Small support helps me keep building demos, experimenting with AI workflows, and polishing the details.
+                    </p>
+                </div>
+                <a class="support-banner__cta" href="https://buymeacoffee.com/osspalossm" target="_blank" rel="noopener"
+                    data-i18n="support.cta">Buy me a beer</a>
+            </section>
         </section>
 
-        <!-- ────────────────────────────────────
-         CV — Markdown renderizzato
-         ──────────────────────────────────── -->
         <section id="view-cv" class="terminal view-panel">
             <div class="terminal__bar">
                 <span class="terminal__dot terminal__dot--red"></span>
                 <span class="terminal__dot terminal__dot--yellow"></span>
                 <span class="terminal__dot terminal__dot--green"></span>
-                <span class="terminal__tab">~/portfolio/cv.md — markdown</span>
+                <span class="terminal__tab">~/portfolio/cv.md - markdown</span>
             </div>
             <div class="terminal__body">
-                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+                <button class="back-btn" data-back aria-label="Back to home" data-i18n="commands.back">&lt;- cd ~</button>
                 <div class="cv-content" id="cv-render">
-                    <!-- Il contenuto del CV verrà iniettato qui da script.js -->
-                    <p style="color:var(--text-muted)">Caricamento cv.md…</p>
+                    <p style="color:var(--text-muted)" data-i18n="cv.loading">Loading cv.md...</p>
                 </div>
             </div>
         </section>
 
-        <!-- ────────────────────────────────────
-         DOWNLOAD
-         ──────────────────────────────────── -->
         <section id="view-download" class="terminal view-panel">
             <div class="terminal__bar">
                 <span class="terminal__dot terminal__dot--red"></span>
                 <span class="terminal__dot terminal__dot--yellow"></span>
                 <span class="terminal__dot terminal__dot--green"></span>
-                <span class="terminal__tab">~/portfolio/downloads — bash</span>
+                <span class="terminal__tab">~/portfolio/downloads - bash</span>
             </div>
             <div class="terminal__body">
-                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+                <button class="back-btn" data-back aria-label="Back to home" data-i18n="commands.back">&lt;- cd ~</button>
 
                 <div class="prompt">
                     <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
@@ -145,42 +336,36 @@
                 </div>
 
                 <div class="download-grid">
-                    <!-- PDF -->
                     <a class="download-card" href="#" onclick="downloadPDF(); return false;" id="dl-pdf">
-                        <div class="download-card__icon">📄</div>
+                        <div class="download-card__icon">PDF</div>
                         <div class="download-card__format">cv.pdf</div>
-                        <div class="download-card__hint">$ download pdf</div>
+                        <div class="download-card__hint" data-i18n="download.pdf">$ download pdf</div>
                     </a>
 
-                    <!-- DOCX -->
                     <a class="download-card" href="#" onclick="downloadDOCX(); return false;" id="dl-docx">
-                        <div class="download-card__icon">📝</div>
-                        <div class="download-card__format">cv.docx</div>
-                        <div class="download-card__hint">$ download docx</div>
+                        <div class="download-card__icon">DOC</div>
+                        <div class="download-card__format">cv.doc</div>
+                        <div class="download-card__hint" data-i18n="download.docx">$ download docx</div>
                     </a>
 
-                    <!-- Markdown -->
                     <a class="download-card" href="#" onclick="downloadMD(); return false;" id="dl-md">
-                        <div class="download-card__icon">📋</div>
+                        <div class="download-card__icon">MD</div>
                         <div class="download-card__format">cv.md</div>
-                        <div class="download-card__hint">$ download md</div>
+                        <div class="download-card__hint" data-i18n="download.md">$ download md</div>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- ────────────────────────────────────
-         CONTATTI
-         ──────────────────────────────────── -->
         <section id="view-contact" class="terminal view-panel">
             <div class="terminal__bar">
                 <span class="terminal__dot terminal__dot--red"></span>
                 <span class="terminal__dot terminal__dot--yellow"></span>
                 <span class="terminal__dot terminal__dot--green"></span>
-                <span class="terminal__tab">~/portfolio/contacts — bash</span>
+                <span class="terminal__tab">~/portfolio/contacts - bash</span>
             </div>
             <div class="terminal__body">
-                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+                <button class="back-btn" data-back aria-label="Back to home" data-i18n="commands.back">&lt;- cd ~</button>
 
                 <div class="prompt">
                     <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
@@ -191,38 +376,35 @@
 
                 <ul class="contact-list">
                     <li>
-                        <span class="label">"email":</span>
+                        <span class="label" data-i18n="contact.email">"email":</span>
                         <a href="mailto:pietrooss92@gmail.com">"pietrooss92@gmail.com"</a>
                     </li>
                     <li>
-                        <span class="label">"github":</span>
+                        <span class="label" data-i18n="contact.github">"github":</span>
                         <a href="https://github.com/pieoss23" target="_blank" rel="noopener">"github.com/pieoss23"</a>
                     </li>
                     <li>
-                        <span class="label">"linkedin":</span>
+                        <span class="label" data-i18n="contact.linkedin">"linkedin":</span>
                         <a href="https://linkedin.com/in/pietro-oss" target="_blank"
                             rel="noopener">"linkedin.com/in/pietro-oss"</a>
                     </li>
                     <li>
-                        <span class="label">"website":</span>
+                        <span class="label" data-i18n="contact.website">"website":</span>
                         <a href="https://pieoss.dev" target="_blank" rel="noopener">"pieoss.dev"</a>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- ────────────────────────────────────
-         HELP
-         ──────────────────────────────────── -->
         <section id="view-help" class="terminal view-panel">
             <div class="terminal__bar">
                 <span class="terminal__dot terminal__dot--red"></span>
                 <span class="terminal__dot terminal__dot--yellow"></span>
                 <span class="terminal__dot terminal__dot--green"></span>
-                <span class="terminal__tab">~/portfolio — help</span>
+                <span class="terminal__tab">~/portfolio - help</span>
             </div>
             <div class="terminal__body">
-                <button class="back-btn" data-back aria-label="Torna alla home">← cd ~</button>
+                <button class="back-btn" data-back aria-label="Back to home" data-i18n="commands.back">&lt;- cd ~</button>
 
                 <div class="prompt">
                     <span class="prompt__user">user</span><span class="prompt__sep">@</span><span
@@ -234,56 +416,53 @@
                 <table class="help-table">
                     <tr>
                         <td class="help-cmd">open cv</td>
-                        <td class="help-desc">Visualizza il curriculum</td>
+                        <td class="help-desc" data-i18n="help.openCv">Open the curriculum</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">download cv</td>
-                        <td class="help-desc">Scarica il CV (scegli formato)</td>
+                        <td class="help-desc" data-i18n="help.downloadCv">Open the download view</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">download pdf</td>
-                        <td class="help-desc">Scarica il CV in formato PDF</td>
+                        <td class="help-desc" data-i18n="help.downloadPdf">Print the CV as PDF</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">download docx</td>
-                        <td class="help-desc">Scarica il CV in formato DOCX</td>
+                        <td class="help-desc" data-i18n="help.downloadDocx">Export the CV as Word document</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">download md</td>
-                        <td class="help-desc">Scarica il CV in formato Markdown</td>
+                        <td class="help-desc" data-i18n="help.downloadMd">Download the Markdown source</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">contact</td>
-                        <td class="help-desc">Mostra i contatti</td>
+                        <td class="help-desc" data-i18n="help.contact">Show the contact details</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">help</td>
-                        <td class="help-desc">Mostra questo messaggio</td>
+                        <td class="help-desc" data-i18n="help.help">Show this help view</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">home</td>
-                        <td class="help-desc">Torna alla schermata iniziale</td>
+                        <td class="help-desc" data-i18n="help.home">Return to the main landing page</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">clear</td>
-                        <td class="help-desc">Pulisci e torna alla home</td>
+                        <td class="help-desc" data-i18n="help.clear">Reset to the home view</td>
                     </tr>
                 </table>
             </div>
         </section>
-
     </main>
 
-    <!-- ========== STATUS BAR (footer) ========== -->
     <footer class="statusbar" role="contentinfo">
         <div class="statusbar__left">
-            <span>●</span> READY — <span id="status-view">HOME</span>
+            <span>*</span> READY - <span id="status-view">HOME</span>
         </div>
         <div class="statusbar__right">
-            UTF-8 &nbsp;|&nbsp; JavaScript &nbsp;|&nbsp; LF
+            UTF-8 | JavaScript | Static site
         </div>
     </footer>
-
 </body>
 
 </html>
