@@ -19,6 +19,8 @@ const inputField = $('#terminal-input');
 const statusView = $('#status-view');
 const themeButtons = $$('[data-theme-option]');
 const languageButtons = $$('[data-lang]');
+const terminalAssist = $('#terminal-assist');
+const terminalAssistClose = $('#terminal-assist-close');
 
 const translations = {
   en: {
@@ -52,6 +54,7 @@ const translations = {
     'terminal.panel2.label': 'Interface demo',
     'terminal.panel2.title': 'Podcast explorer',
     'terminal.panel2.desc': 'Browse global shows, filter by topic, play episodes from one place.',
+    'terminal.assist.title': 'Command help',
     'terminal.placeholder': 'type a command...',
     'projects.eyebrow': 'Featured work',
     'projects.title': 'Project demos worth showing, not just listing.',
@@ -93,6 +96,8 @@ const translations = {
     'focus.card2.body': 'Reducing manual steps, increasing traceability, and keeping operators in control.',
     'focus.card3.title': 'Usable Interfaces',
     'focus.card3.body': 'Dense, readable layouts with motion that supports hierarchy instead of fighting it.',
+    'focus.card4.title': 'Agentic Workflows',
+    'focus.card4.body': 'Tool-calling agents, constrained automations, evaluation loops, and human approval points for tasks that need reliability.',
     'cta.eyebrow': 'Open to collaboration',
     'cta.title': 'Need a software demo, internal tool, or AI-assisted workflow?',
     'support.eyebrow': 'Support the work',
@@ -114,6 +119,7 @@ const translations = {
     'help.downloadDocx': 'Export the CV as Word document',
     'help.downloadMd': 'Download the Markdown source',
     'help.contact': 'Show the contact details',
+    'help.feedback': 'Send quick feedback by email',
     'help.help': 'Show this help view',
     'help.home': 'Return to the main landing page',
     'help.clear': 'Reset to the home view',
@@ -155,6 +161,7 @@ const translations = {
     'terminal.panel2.label': 'Demo interfaccia',
     'terminal.panel2.title': 'Esploratore podcast',
     'terminal.panel2.desc': 'Sfoglia podcast globali, filtra per tema e ascolta da un unico posto.',
+    'terminal.assist.title': 'Aiuto comandi',
     'terminal.placeholder': 'scrivi un comando...',
     'projects.eyebrow': 'Lavori in evidenza',
     'projects.title': 'Demo di progetto da mostrare, non solo da elencare.',
@@ -196,6 +203,8 @@ const translations = {
     'focus.card2.body': 'Meno passaggi manuali, piu tracciabilita e operatori sempre in controllo.',
     'focus.card3.title': 'Interfacce usabili',
     'focus.card3.body': 'Layout densi e leggibili con motion che supporta la gerarchia.',
+    'focus.card4.title': 'Workflow agentici',
+    'focus.card4.body': 'Agenti con tool calling, automazioni vincolate, cicli di valutazione e approvazioni umane per attivita che richiedono affidabilita.',
     'cta.eyebrow': 'Disponibile a collaborare',
     'cta.title': 'Ti serve una demo software, uno strumento interno o un workflow assistito da AI?',
     'support.eyebrow': 'Supporta il lavoro',
@@ -217,6 +226,7 @@ const translations = {
     'help.downloadDocx': 'Esporta il CV come documento Word',
     'help.downloadMd': 'Scarica il sorgente Markdown',
     'help.contact': 'Mostra i contatti',
+    'help.feedback': 'Invia un feedback rapido via email',
     'help.help': 'Mostra questa guida',
     'help.home': 'Torna alla landing page principale',
     'help.clear': 'Ripristina la home',
@@ -258,6 +268,7 @@ const translations = {
     'terminal.panel2.label': 'Demo de interfaz',
     'terminal.panel2.title': 'Explorador de podcasts',
     'terminal.panel2.desc': 'Explora podcasts globales, filtra por tema y escucha desde un solo lugar.',
+    'terminal.assist.title': 'Ayuda de comandos',
     'terminal.placeholder': 'escribe un comando...',
     'projects.eyebrow': 'Trabajo destacado',
     'projects.title': 'Demos de proyecto que merece la pena mostrar, no solo listar.',
@@ -299,6 +310,8 @@ const translations = {
     'focus.card2.body': 'Menos pasos manuales, mas trazabilidad y operadores con control.',
     'focus.card3.title': 'Interfaces usables',
     'focus.card3.body': 'Layouts densos y legibles con motion que apoya la jerarquia.',
+    'focus.card4.title': 'Workflows agenticos',
+    'focus.card4.body': 'Agentes con tool calling, automatizaciones acotadas, ciclos de evaluacion y aprobaciones humanas para tareas que necesitan fiabilidad.',
     'cta.eyebrow': 'Abierto a colaborar',
     'cta.title': 'Necesitas una demo de software, una herramienta interna o un workflow asistido por IA?',
     'support.eyebrow': 'Apoya el trabajo',
@@ -320,6 +333,7 @@ const translations = {
     'help.downloadDocx': 'Exporta el CV como documento Word',
     'help.downloadMd': 'Descarga la fuente en Markdown',
     'help.contact': 'Muestra los datos de contacto',
+    'help.feedback': 'Enviar feedback rapido por email',
     'help.help': 'Muestra esta ayuda',
     'help.home': 'Vuelve a la pagina principal',
     'help.clear': 'Restablece la vista home',
@@ -336,6 +350,7 @@ let currentView = 'home';
 let cvMarkdown = '';
 let currentLanguage = 'en';
 let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let typingTimer = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   setupLanguage();
@@ -343,7 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadCV();
   setupNavigation();
   setupInput();
-  runTypingAnimation();
   setupRevealObserver();
   setupParallax();
 });
@@ -360,7 +374,7 @@ async function loadCV() {
   }
 }
 
-function showView(name) {
+function showView(name, options = {}) {
   Object.entries(views).forEach(([key, el]) => {
     if (!el) return;
     el.classList.toggle('active', key === name);
@@ -370,7 +384,9 @@ function showView(name) {
 
   currentView = name;
   updateStatus(name);
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  if (options.scrollTop !== false) {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  }
 }
 
 function updateStatus(view) {
@@ -385,6 +401,17 @@ function updateStatus(view) {
 }
 
 function setupNavigation() {
+  $$('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      const target = $(hash);
+      if (!target) return;
+      event.preventDefault();
+      scrollToHomeSection(hash);
+    });
+  });
+
   $$('[data-cmd]').forEach((btn) => {
     btn.addEventListener('click', () => {
       handleCommand(btn.dataset.cmd || '');
@@ -394,6 +421,8 @@ function setupNavigation() {
   $$('[data-back]').forEach((btn) => {
     btn.addEventListener('click', () => showView('home'));
   });
+
+  terminalAssistClose?.addEventListener('click', hideTerminalAssist);
 }
 
 function handleCommand(raw) {
@@ -436,7 +465,12 @@ function handleCommand(raw) {
     case 'aiuto':
     case 'ayuda':
     case '?':
-      showView('help');
+      showTerminalAssist();
+      scrollToHomeSection('#hero');
+      break;
+    case 'feedback':
+    case '/feedback':
+      window.location.href = 'mailto:pietrooss92@gmail.com?subject=Portfolio%20feedback';
       break;
     case 'home':
     case 'inicio':
@@ -450,6 +484,28 @@ function handleCommand(raw) {
     default:
       flashInputError(raw);
   }
+}
+
+function scrollToHomeSection(hash) {
+  showView('home', { scrollTop: false });
+  window.requestAnimationFrame(() => {
+    const target = $(hash);
+    if (!target) return;
+    const topbar = $('.topbar');
+    const topbarHeight = topbar?.getBoundingClientRect().height || 0;
+    const offset = topbarHeight + 18;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    history.replaceState(null, '', hash);
+  });
+}
+
+function showTerminalAssist() {
+  terminalAssist?.classList.add('is-visible');
+}
+
+function hideTerminalAssist() {
+  terminalAssist?.classList.remove('is-visible');
 }
 
 function flashInputError(raw) {
@@ -533,6 +589,10 @@ function triggerDownload(blob, filename) {
 function runTypingAnimation() {
   const el = $('#typing-target');
   if (!el) return;
+  if (typingTimer) {
+    clearTimeout(typingTimer);
+    typingTimer = null;
+  }
 
   const text = el.dataset.text || el.textContent || '';
   el.textContent = '';
@@ -548,7 +608,7 @@ function runTypingAnimation() {
     if (index >= text.length) return;
     el.textContent += text.charAt(index);
     index += 1;
-    setTimeout(type, CONFIG.typingSpeed);
+    typingTimer = setTimeout(type, CONFIG.typingSpeed);
   };
 
   type();

@@ -15,9 +15,9 @@
     <meta property="og:type" content="website" />
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='68' font-size='56' font-family='monospace'>&gt;_</text></svg>" />
-    <link rel="stylesheet" href="style.css?v=20260609-1" />
+    <link rel="stylesheet" href="style.css?v=20260610-2" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-    <script src="script.js?v=20260609-1" defer></script>
+    <script src="script.js?v=20260610-2" defer></script>
 </head>
 
 <body>
@@ -28,9 +28,9 @@
     </div>
 
     <header class="topbar" role="banner">
-        <div class="topbar__title">
+        <a class="topbar__title" href="#hero" data-home-link aria-label="Back to home">
             <span>&lt;/&gt;</span> pietro.oss<span class="topbar__sep">@</span>portfolio
-        </div>
+        </a>
         <nav class="topbar__nav" aria-label="Primary">
             <a href="#hero" data-i18n="nav.home">Home</a>
             <a href="#projects" data-i18n="nav.projects">Projects</a>
@@ -152,6 +152,21 @@
                                         autocomplete="off" spellcheck="false" aria-label="Enter a command" />
                                 </div>
                             </div>
+
+                            <div class="terminal-assist" id="terminal-assist" aria-live="polite">
+                                <div class="terminal-assist__header">
+                                    <span data-i18n="terminal.assist.title">Command help</span>
+                                    <button type="button" class="terminal-assist__close" id="terminal-assist-close"
+                                        aria-label="Close command help">x</button>
+                                </div>
+                                <ul class="terminal-assist__list">
+                                    <li><code>open cv</code><span data-i18n="help.openCv">Open the curriculum</span></li>
+                                    <li><code>download cv</code><span data-i18n="help.downloadCv">Open the download view</span></li>
+                                    <li><code>contact</code><span data-i18n="help.contact">Show the contact details</span></li>
+                                    <li><code>feedback</code><span data-i18n="help.feedback">Send quick feedback by email</span></li>
+                                    <li><code>home</code><span data-i18n="help.home">Return to the main landing page</span></li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -183,6 +198,9 @@
                             <li data-i18n="projects.rag.item2">Answer flow that cites the retrieved lecture material</li>
                             <li data-i18n="projects.rag.item3">Useful for exam prep, topic recap, and quick concept lookup</li>
                         </ul>
+                        <div class="project-card__tags" aria-label="Project tags">
+                            <span>RAG</span><span>Embeddings</span><span>Grounding</span><span>Study tool</span>
+                        </div>
                         <div class="project-card__footer">
                             <span data-i18n="projects.rag.stack">Stack idea: Python, vector DB, OpenAI API, lightweight UI</span>
                         </div>
@@ -203,6 +221,9 @@
                             <li data-i18n="projects.podcast.item2">Episode cards with player state and saved queue</li>
                             <li data-i18n="projects.podcast.item3">Discovery-first layout tuned for large content catalogs</li>
                         </ul>
+                        <div class="project-card__tags" aria-label="Project tags">
+                            <span>Search UX</span><span>Audio</span><span>Filters</span><span>Content discovery</span>
+                        </div>
                         <div class="project-card__footer">
                             <span data-i18n="projects.podcast.stack">Stack idea: Next.js, search API, audio player, personalized feed</span>
                         </div>
@@ -223,6 +244,9 @@
                             <li data-i18n="projects.erp.item2">Operator-friendly logs with fast filtering</li>
                             <li data-i18n="projects.erp.item3">Designed for real internal usage under pressure</li>
                         </ul>
+                        <div class="project-card__tags" aria-label="Project tags">
+                            <span>ERP</span><span>Queues</span><span>Retries</span><span>Ops console</span>
+                        </div>
                         <div class="project-card__footer">
                             <span data-i18n="projects.erp.stack">Stack idea: API integrations, queues, dashboard UI, SQL</span>
                         </div>
@@ -243,6 +267,9 @@
                             <li data-i18n="projects.docs.item2">Validation rules before data lands in the target system</li>
                             <li data-i18n="projects.docs.item3">Human-in-the-loop review for the risky edge cases</li>
                         </ul>
+                        <div class="project-card__tags" aria-label="Project tags">
+                            <span>Agents</span><span>OCR</span><span>Validation</span><span>Human review</span>
+                        </div>
                         <div class="project-card__footer">
                             <span data-i18n="projects.docs.stack">Stack idea: OCR pipeline, rules engine, review UI, ERP handoff</span>
                         </div>
@@ -276,6 +303,11 @@
                         <h3 data-i18n="focus.card3.title">Usable Interfaces</h3>
                         <p data-i18n="focus.card3.body">Dense, readable layouts with motion that supports hierarchy instead of fighting it.</p>
                     </article>
+                    <article class="focus-card reveal">
+                        <span class="focus-card__index">04</span>
+                        <h3 data-i18n="focus.card4.title">Agentic Workflows</h3>
+                        <p data-i18n="focus.card4.body">Tool-calling agents, constrained automations, evaluation loops, and human approval points for tasks that need reliability.</p>
+                    </article>
                 </div>
             </section>
 
@@ -298,8 +330,12 @@
                         Small support helps me keep building demos, experimenting with AI workflows, and polishing the details.
                     </p>
                 </div>
-                <a class="support-banner__cta" href="https://buymeacoffee.com/osspalossm" target="_blank" rel="noopener"
-                    data-i18n="support.cta">Buy me a beer</a>
+                <div class="bmc-widget" aria-label="Buy me a beer">
+                    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+                        data-name="bmc-button" data-slug="osspalossm" data-color="#FFDD00" data-emoji=""
+                        data-font="Lato" data-text="Buy me a beer" data-outline-color="#000000"
+                        data-font-color="#000000" data-coffee-color="#ffffff"></script>
+                </div>
             </section>
         </section>
 
@@ -437,6 +473,10 @@
                     <tr>
                         <td class="help-cmd">contact</td>
                         <td class="help-desc" data-i18n="help.contact">Show the contact details</td>
+                    </tr>
+                    <tr>
+                        <td class="help-cmd">feedback</td>
+                        <td class="help-desc" data-i18n="help.feedback">Send quick feedback by email</td>
                     </tr>
                     <tr>
                         <td class="help-cmd">help</td>
