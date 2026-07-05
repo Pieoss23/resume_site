@@ -844,27 +844,92 @@ printStyles.textContent = `
     #view-help {
       display: none !important;
     }
+    * {
+      orphans: 3;
+      widows: 3;
+    }
     body {
       background: #fff;
       color: #111;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
     }
     .main {
       max-width: 100%;
       padding: 0;
+      margin: 0;
     }
     .terminal {
       box-shadow: none;
       border: none;
       background: #fff;
+      padding: 0;
+      margin: 0;
     }
     .terminal__bar {
       display: none;
     }
+    .terminal__body {
+      padding: 0;
+    }
     .cv-content {
       padding: 0;
+      margin: 0;
+    }
+    .cv-content h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      margin: 0 0 8pt 0;
+      page-break-after: avoid;
+    }
+    .cv-content h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      margin: 12pt 0 6pt 0;
+      page-break-after: avoid;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4pt;
+    }
+    .cv-content h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      margin: 8pt 0 4pt 0;
+      page-break-after: avoid;
+    }
+    .cv-content h4 {
+      font-size: 10pt;
+      font-weight: 700;
+      margin: 6pt 0 3pt 0;
+      page-break-after: avoid;
+    }
+    .cv-content p {
+      margin: 4pt 0;
+      page-break-inside: avoid;
+    }
+    .cv-content ul,
+    .cv-content ol {
+      margin: 6pt 0;
+      padding-left: 20pt;
+      page-break-inside: avoid;
+    }
+    .cv-content li {
+      margin: 3pt 0;
+    }
+    .cv-content hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 10pt 0;
+      page-break-after: avoid;
     }
     #view-cv {
       display: block !important;
+    }
+    @page {
+      margin: 0.5in;
+      size: A4;
     }
   }
 `;
