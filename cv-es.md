@@ -1,148 +1,224 @@
 # PIETRO OSS
-**Software Developer** | Nacido: 1992-01-23 | Trento, Italia
+### Software Developer | AI Integration & Automation
 
-📞 +39 347 5501129 | ✉️ pietrooss92@gmail.com | 🔗 https://linkedin.com/in/pietro-oss/
-
----
-
-## PERFIL
-
-Desarrollador de Software con experiencia en desarrollo de aplicaciones, integración de datos y sistemas ERP. A lo largo de mi trayectoria profesional, he trabajado en desarrollo de software, gestión de bases de datos, automatización de procesos, migración de datos y soporte técnico en entornos retail.
-
-En los últimos meses, he profundizado en la aplicación de la Inteligencia Artificial al desarrollo de software, construyendo sistemas de bases de conocimiento, pipelines de embedding y herramientas basadas en Modelos de Lenguaje Grande (LLM) para mejorar la documentación técnica, la búsqueda de información y la productividad en desarrollo.
-
-Actualmente estudio el **Grado en Estadística y Big Data (curriculum IA para empresas)** en la Università Telematica Unimercatorum.
+📍 Trento, Italia  
+📞 +39 347 5501129  
+✉️ pietrooss92@gmail.com  
+🔗 LinkedIn: https://linkedin.com/in/pietro-oss
 
 ---
 
-## COMPETENCIAS TÉCNICAS
+# PERFIL
 
-### Lenguajes
+Desarrollador de Software con experiencia en desarrollo de aplicaciones, integración de datos y sistemas ERP en entornos retail. Me especializo en diseño de herramientas de software, automatización de procesos, gestión de bases de datos e integración entre sistemas empresariales.
+
+En los últimos años he desarrollado un fuerte interés en la aplicación de Inteligencia Artificial a procesos empresariales, profundizando en el uso de Modelos de Lenguaje Grande (LLMs), sistemas Retrieval-Augmented Generation (RAG) y bases de conocimiento para mejorar productividad, búsqueda documental y soporte técnico.
+
+Actualmente estudio el **Grado en Estadística y Big Data – itinerario IA para empresas** en la Università Telematica Unimercatorum, con el objetivo de especializarme en la integración de IA en sistemas informáticos empresariales.
+
+---
+
+# COMPETENCIAS TÉCNICAS
+
+## Lenguajes
+
 - Python
 - JavaScript
-- HTML / CSS
 - Delphi
 - Free Pascal
+- HTML5
+- CSS3
 
-### IA & Modelos de Lenguaje Grande
-- Modelos de Lenguaje Grande (OpenAI, Claude, Gemini, Ollama)
+---
+
+## Inteligencia Artificial
+
+- Integración de Modelos de Lenguaje Grande (OpenAI, Claude, Gemini, Ollama)
 - Prompt Engineering
-- Desarrollo Asistido por IA
+- Desarrollo asistido por IA
 - Retrieval-Augmented Generation (RAG)
-- Embeddings Vectoriales
-- Búsqueda Semántica
+- Embeddings vectoriales
+- Búsqueda semántica
 - FAISS (nivel básico)
-- Gestión de Bases de Conocimiento
-- Automatización de Documentación Técnica con IA
+- Bases de Conocimiento basadas en IA
+- Automatización de documentación técnica
+- Uso de IA para debugging, refactoring y desarrollo software
 
-### Frameworks & Librerías
+---
+
+## Frameworks y Librerías
+
 - React
 - Node.js
-- Angular
-- Vue
 
-### Bases de Datos
+---
+
+## Bases de Datos
+
 - PostgreSQL
 - SQLite
 - DBISAM
 
-### ERP & Herramientas de Desarrollo
-- Odoo (personalización, integración y reporting)
+---
+
+## ERP & Desarrollo
+
+- Odoo
 - Git
+- REST API
 - Agile / Scrum
 
-### Diseño
-- Adobe Illustrator
-- Adobe Photoshop
+---
 
-### Otras Competencias
-- Análisis Funcional
-- Testing de Software
-- Formación de Usuarios
-- Composición Musical
+## Diseño
+
+- Adobe Photoshop
+- Adobe Illustrator
 
 ---
 
-## EXPERIENCIA PROFESIONAL
+# EXPERIENCIA PROFESIONAL
 
-### Software Specialist
-**Ixorateam (Retail Expert) – SEAC S.p.A.**  
+## Software Specialist
+### Ixorateam (Retail Expert) – SEAC S.p.A.
 **Diciembre 2022 – Actualidad**
 
-- Desarrollo de aplicaciones y herramientas internas en Python, Delphi y Free Pascal.
-- Gestión de bases de datos PostgreSQL, SQLite y DBISAM.
-- Migración, validación e integración de datos provenientes de sistemas legacy.
-- Automatización de flujos empresariales e integración con ERP y dispositivos hardware.
-- Experimentación con herramientas basadas en LLM para documentación técnica, bases de conocimiento y automatización de actividades de desarrollo.
-- Testing funcional, análisis de nuevas funcionalidades y soporte técnico.
-- Capacitación de usuarios y asistencia durante la adopción de nuevos procedimientos de software.
-- Experiencia en procesos retail, e-commerce, logística, almacén y contabilidad.
+Actividades principales:
 
-### Junior Full-Stack Developer
-**Develhope**  
-**Marzo 2022 – Septiembre 2022**
+- desarrollo de aplicaciones de escritorio en Python, Delphi y Free Pascal;
+- diseño de herramientas para automatización de procesos empresariales;
+- integración de datos entre ERP, bases de datos y sistemas externos;
+- gestión y optimización de bases de datos PostgreSQL, SQLite y DBISAM;
+- migración y validación de datos de sistemas legacy;
+- desarrollo de utilidades para procesamiento automático de datos;
+- testing funcional y análisis de nuevas funcionalidades;
+- formación y soporte a usuarios finales;
+- colaboración con el equipo técnico en análisis de problemas software.
 
-- Formación intensiva en stack JavaScript.
-- Desarrollo de aplicaciones web con React y Node.js.
-- Trabajo en equipo con metodología Agile/Scrum.
-- Versionamiento de código con Git.
+Actividades relacionadas con IA:
 
-### Practicante Software Developer
-**Saidea S.r.l.**  
-**Junio 2021 – Octubre 2021**
-
-- Primer acercamiento al desarrollo de software.
-- Soporte técnico al cliente.
-- Desarrollo de competencias básicas en JavaScript y ciclo de vida del software.
-
-### Cocinero y Pizzero
-**Restauración**  
-**2015 – 2021**
-
-- Gestión de operaciones en entornos de alta presión.
-- Organización del trabajo y coordinación con el equipo.
-- Resolución de problemas y gestión de prioridades.
-- Desarrollo de resiliencia, precisión y capacidades organizativas.
+- desarrollo de sistemas de base de conocimiento para documentación técnica;
+- implementación de pipelines de embedding y búsqueda semántica;
+- experimentación con herramientas basadas en Modelos de Lenguaje Grande para soporte técnico y desarrollo software;
+- uso diario de asistentes IA para automatización, documentación y debugging.
 
 ---
 
-## FORMACIÓN
+## Junior Full Stack Developer
+### Develhope
+**Marzo 2022 – Septiembre 2022**
 
-**Grado en Estadística y Big Data**  
-**Università Telematica Unimercatorum**  
+- desarrollo de aplicaciones web con React y Node.js;
+- desarrollo JavaScript moderno;
+- trabajo en equipo con metodología Agile;
+- uso de Git y GitHub.
+
+---
+
+## Practicante Software Developer
+### Saidea S.r.l.
+**Junio 2021 – Octubre 2021**
+
+- soporte al desarrollo software;
+- atención técnica al cliente;
+- primeras experiencias con JavaScript y desarrollo aplicativo.
+
+---
+
+## Cocinero y Pizzero
+**2015 – 2021**
+
+Experiencia que me permitió desarrollar:
+
+- gestión del estrés;
+- organización del trabajo;
+- capacidad de trabajo en equipo;
+- resolución de problemas;
+- gestión de prioridades.
+
+---
+
+# PROYECTOS PERSONALES
+
+## Base de Conocimiento IA para documentación técnica
+
+Diseño de un sistema RAG dedicado a documentación ERP con:
+
+- pipeline automática de actualización;
+- embeddings vectoriales;
+- búsqueda semántica;
+- organización de documentación técnica;
+- uso de Modelos de Lenguaje Grande para recuperación de información.
+
+---
+
+## Automatización mediante IA
+
+Estudio y experimentación de herramientas IA para:
+
+- generación de documentación;
+- análisis de código;
+- debugging;
+- refactoring;
+- soporte al desarrollo software.
+
+---
+
+# FORMACIÓN
+
+## Grado en Estadística y Big Data
+### Università Telematica Unimercatorum
+
 **En curso**
 
-Curriculum orientado a la aplicación de Estadística, Data Mining e Inteligencia Artificial en procesos empresariales.
+Itinerario: Estadística e IA para empresas
 
-**Full-Stack Web Developer**  
-**Develhope**  
-**2022**
+Áreas principales de estudio:
 
-**Software Developer**  
-**EDUTECH**  
-**2021**
+- Estadística
+- Data Mining
+- Machine Learning
+- Análisis de Datos
+- Business Intelligence
+- Inteligencia Artificial
 
-**Diploma de Perito Gráfico**  
+---
+
+## Full Stack Web Developer
+**Develhope** | 2022
+
+---
+
+## Software Developer
+**EDUTECH** | 2021
+
+---
+
+## Diploma de Perito Gráfico
 **2014**
 
 ---
 
-## IDIOMAS
+# IDIOMAS
 
-- Italiano — Lengua Materna
-- Inglés — Nivel técnico (lectura de documentación y uso diario)
+Italiano — Lengua materna
+
+Inglés — Buena capacidad de lectura de documentación técnica y uso diario en entorno informático.
 
 ---
 
-## INTERESES PROFESIONALES
+# INTERESES PROFESIONALES
 
-- Inteligencia Artificial aplicada al desarrollo de software
-- Automatización de procesos empresariales
-- Sistemas ERP
-- Data Management
+- Artificial Intelligence
+- AI Integration
+- Business Automation
+- Enterprise Software
+- ERP
+- Data Engineering
+- Large Language Models
+- Software Architecture
 - Knowledge Management
-- Integración de Modelos de Lenguaje Grande en aplicaciones empresariales
 
 ---
 
-* [x] *Autorizo el tratamiento de datos personales conforme al GDPR (Reglamento UE 2016/679).*
+Autorizo el tratamiento de datos personales de conformidad con el Reglamento UE 2016/679 (GDPR).
