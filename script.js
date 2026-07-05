@@ -1,6 +1,11 @@
 const CONFIG = {
   typingSpeed: 38,
-  cvFile: 'cv.md',
+  cvFiles: {
+    en: 'cv-en.md',
+    it: 'cv-it.md',
+    es: 'cv-es.md',
+  },
+  cvFallbackFile: 'cv-it.md',
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -15,12 +20,16 @@ const views = {
 };
 
 const cvContent = $('#cv-render');
+const cvFileTab = $('#cv-file-tab');
 const inputField = $('#terminal-input');
 const statusView = $('#status-view');
 const themeButtons = $$('[data-theme-option]');
 const languageButtons = $$('[data-lang]');
 const terminalAssist = $('#terminal-assist');
 const terminalAssistClose = $('#terminal-assist-close');
+const downloadFormatMd = $('#download-format-md');
+const downloadFormatDocx = $('#download-format-docx');
+const downloadFormatPdf = $('#download-format-pdf');
 
 const translations = {
   en: {
@@ -104,8 +113,8 @@ const translations = {
     'support.title': 'If this portfolio made you smile, buy me a beer.',
     'support.body': 'Small support helps me keep building demos, experimenting with AI workflows, and polishing the details.',
     'support.cta': 'Buy me a beer',
-    'cv.loading': 'Loading cv.md...',
-    'cv.error': 'Error: unable to load cv.md',
+    'cv.loading': 'Loading CV...',
+    'cv.error': 'Error: unable to load the selected CV',
     'download.pdf': '$ download pdf',
     'download.docx': '$ download docx',
     'download.md': '$ download md',
@@ -211,8 +220,8 @@ const translations = {
     'support.title': 'Se questo portfolio ti ha strappato un sorriso, offrimi una birra.',
     'support.body': 'Un piccolo supporto mi aiuta a continuare a costruire demo, sperimentare workflow AI e rifinire i dettagli.',
     'support.cta': 'Offrimi una birra',
-    'cv.loading': 'Caricamento cv.md...',
-    'cv.error': 'Errore: impossibile caricare cv.md',
+    'cv.loading': 'Caricamento CV...',
+    'cv.error': 'Errore: impossibile caricare il CV selezionato',
     'download.pdf': '$ download pdf',
     'download.docx': '$ download docx',
     'download.md': '$ download md',
@@ -318,8 +327,8 @@ const translations = {
     'support.title': 'Si este portfolio te saco una sonrisa, invitame a una cerveza.',
     'support.body': 'Un pequeno apoyo me ayuda a seguir construyendo demos, experimentando con workflows de IA y puliendo los detalles.',
     'support.cta': 'Invitame a una cerveza',
-    'cv.loading': 'Cargando cv.md...',
-    'cv.error': 'Error: no se pudo cargar cv.md',
+    'cv.loading': 'Cargando CV...',
+    'cv.error': 'Error: no se pudo cargar el CV seleccionado',
     'download.pdf': '$ download pdf',
     'download.docx': '$ download docx',
     'download.md': '$ download md',
@@ -349,26 +358,71 @@ const translations = {
 let currentView = 'home';
 let cvMarkdown = '';
 let currentLanguage = 'en';
+let currentCVFile = CONFIG.cvFallbackFile;
 let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let typingTimer = null;
+let cvRequestId = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   setupLanguage();
   setupTheme();
-  loadCV();
   setupNavigation();
   setupInput();
   setupRevealObserver();
   setupParallax();
 });
 
-async function loadCV() {
+function getCVFileForLanguage(lang) {
+  return CONFIG.cvFiles[lang] || CONFIG.cvFiles.en || CONFIG.cvFallbackFile;
+}
+
+function getCVDownloadBaseName() {
+  return currentCVFile.replace(/\.md$/i, '');
+}
+
+function updateCVReferences() {
+  if (cvFileTab) {
+    cvFileTab.textContent = `~/portfolio/${currentCVFile} - markdown`;
+  }
+
+  if (downloadFormatMd) {
+    downloadFormatMd.textContent = currentCVFile;
+  }
+
+  const docName = `${getCVDownloadBaseName()}.doc`;
+  const pdfName = `${getCVDownloadBaseName()}.pdf`;
+
+  if (downloadFormatDocx) {
+    downloadFormatDocx.textContent = docName;
+  }
+
+  if (downloadFormatPdf) {
+    downloadFormatPdf.textContent = pdfName;
+  }
+}
+
+async function loadCV(lang = currentLanguage) {
+  const requestId = ++cvRequestId;
+  const requestedFile = getCVFileForLanguage(lang);
+  currentCVFile = requestedFile;
+  updateCVReferences();
+  cvContent.innerHTML = `<p style="color:var(--text-muted)">${t('cv.loading')}</p>`;
+
   try {
-    const res = await fetch(CONFIG.cvFile);
+    let res = await fetch(requestedFile);
+    if (!res.ok && requestedFile !== CONFIG.cvFallbackFile) {
+      res = await fetch(CONFIG.cvFallbackFile);
+      if (requestId !== cvRequestId) return;
+      currentCVFile = CONFIG.cvFallbackFile;
+      updateCVReferences();
+    }
     if (!res.ok) throw new Error('CV not found');
+    if (requestId !== cvRequestId) return;
     cvMarkdown = await res.text();
+    if (requestId !== cvRequestId) return;
     cvContent.innerHTML = marked.parse(cvMarkdown);
   } catch (err) {
+    if (requestId !== cvRequestId) return;
     cvContent.innerHTML = `<p style="color:var(--text-red)">${t('cv.error')}</p>`;
     console.error(err);
   }
@@ -434,12 +488,14 @@ function handleCommand(raw) {
     case 'abrir cv':
     case 'cv':
       showView('cv');
+      scrollToViewContent('cv');
       break;
     case 'download cv':
     case 'scarica cv':
     case 'descargar cv':
     case 'download':
       showView('download');
+      scrollToViewContent('download');
       break;
     case 'download pdf':
     case 'scarica pdf':
@@ -500,6 +556,28 @@ function scrollToHomeSection(hash) {
   });
 }
 
+function scrollToViewContent(viewName) {
+  window.requestAnimationFrame(() => {
+    let target = null;
+
+    if (viewName === 'cv') {
+      target = $('#cv-render');
+    } else if (viewName === 'download') {
+      target = $('.download-grid');
+    } else if (viewName === 'contact') {
+      target = $('.contact-list');
+    }
+
+    if (!target) return;
+
+    const topbar = $('.topbar');
+    const topbarHeight = topbar?.getBoundingClientRect().height || 0;
+    const offset = topbarHeight + 18;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+}
+
 function showTerminalAssist() {
   terminalAssist?.classList.add('is-visible');
 }
@@ -538,7 +616,7 @@ function setupInput() {
 
 function downloadMD() {
   const blob = new Blob([cvMarkdown], { type: 'text/markdown' });
-  triggerDownload(blob, 'cv.md');
+  triggerDownload(blob, currentCVFile);
 }
 
 function downloadPDF() {
@@ -570,7 +648,7 @@ function downloadDOCX() {
   const blob = new Blob(['\ufeff', `${preHtml}${htmlContent}${postHtml}`], {
     type: 'application/msword',
   });
-  triggerDownload(blob, 'cv.doc');
+  triggerDownload(blob, `${getCVDownloadBaseName()}.doc`);
 }
 
 function triggerDownload(blob, filename) {
@@ -681,6 +759,7 @@ function applyLanguage(lang) {
   });
 
   updateStatus(currentView);
+  loadCV(currentLanguage);
   restartTypingAnimation();
 }
 
